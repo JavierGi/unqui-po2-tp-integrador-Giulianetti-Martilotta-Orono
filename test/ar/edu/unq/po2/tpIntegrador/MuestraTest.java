@@ -47,10 +47,9 @@ class MuestraTest {
 		muestra.setEstado(verificada);
 		when(verificada.getEstado()).thenReturn(false);
 		
-		Exception exception = assertThrows(VotacionCerradaException.class, () -> {
+		assertThrows(VotacionCerradaException.class, () -> {
 		    muestra.registrarVoto("voto");});
-		    
-		assertEquals(exception.getMessage(),"La votacion ya esta cerrada");
+	
 	}
 
 
