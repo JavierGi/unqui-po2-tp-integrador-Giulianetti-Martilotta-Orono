@@ -31,9 +31,20 @@ class UsuarioTest {
 	}
 	
 	@Test
-	void testUsuarioBasicoVerificaMuestra() {
+	void testUsuarioBasicoVerificaMuestra() throws VotacionCerradaException {
 		usuario.verificarMuestra(muestra,"Vinchuca");
 		verify(muestra).registrarVoto("Vinchuca");		
+	}
+	
+	@Test
+	void testUsuarioNoPuedeVotarMuestraVerificada() throws VotacionCerradaException {
+					
+		when(muestra.esVerificable()).thenReturn(false);
+		usuario.verificarMuestra(muestra, "Chinche");		
+		
+		verify(muestra).registrarVoto("Chinche");
+		assertEquals(muestra.esVerificable(),false);
+		
 	}
 
 }

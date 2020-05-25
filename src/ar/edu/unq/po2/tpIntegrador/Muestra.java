@@ -18,9 +18,18 @@ public class Muestra {
 	
 	}
 
-	public void registrarVoto(String voto) {
-		// TODO Auto-generated method stub
+	public void registrarVoto(String voto) throws VotacionCerradaException{
 		
+		if(this.esVerificable()) {
+			this.foto = voto;
+		}else {
+			throw new VotacionCerradaException("La votacion ya esta cerrada");
+		}
+		
+	}
+	
+	public String exVotacionCerrada() {
+		return "No verificable";
 	}
 
 	public boolean esVerificable() {

@@ -18,6 +18,6 @@ public abstract class Usuario {
 	public String getUsername() {
 		return this.username;
 	}
-	protected abstract void verificarMuestra(Muestra muestra, String string);
+	protected abstract void verificarMuestra(Muestra muestra, String string) throws VotacionCerradaException;
 
 }

@@ -16,7 +16,7 @@ public class UsuarioBasico extends Usuario {
 	}
 
 	@Override
-	protected void verificarMuestra(Muestra muestra, String voto) {
+	protected void verificarMuestra(Muestra muestra, String voto) throws VotacionCerradaException {
 		muestra.registrarVoto(voto);
 	}
 

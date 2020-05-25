@@ -6,6 +6,7 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 class MuestraTest {
 	
 	private Muestra muestra;
@@ -32,7 +33,25 @@ class MuestraTest {
 	void testSeCierraLaVotacionDeUnaMuestra() {
 		
 		muestra.setEstado(verificada);
+		
+		when(verificada.getEstado()).thenReturn(false);		
+		
 		assertEquals(muestra.esVerificable(),false);
+		verify(verificada).getEstado();
 	}
+	
+	@Test
+	void testMuestraCerradaNoRegistraVoto() throws VotacionCerradaException {		
+		
+		
+		muestra.setEstado(verificada);
+		when(verificada.getEstado()).thenReturn(false);
+		
+		Exception exception = assertThrows(VotacionCerradaException.class, () -> {
+		    muestra.registrarVoto("voto");});
+		    
+		assertEquals(exception.getMessage(),"La votacion ya esta cerrada");
+	}
+
 
 }
