@@ -1,5 +1,14 @@
 package ar.edu.unq.po2.tpIntegrador;
 
-public class Usuario {
+public abstract class Usuario {
+	
+	private AplicacionWeb app;
+	
+	public Usuario(AplicacionWeb app) {
+		this.app = app;
+	}
+	public void publicarMuestra(Muestra muestra) {
+		this.app.registrarMuestra(muestra);
+	}
 
 }
