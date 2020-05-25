@@ -33,8 +33,7 @@ class UsuarioTest {
 	@Test
 	void testUsuarioBasicoVerificaMuestra() {
 		usuario.verificarMuestra(muestra,"Vinchuca");
-		verify(muestra).registrarVoto("Vinchuca");
-		
+		verify(muestra).registrarVoto("Vinchuca");		
 	}
 
 }
