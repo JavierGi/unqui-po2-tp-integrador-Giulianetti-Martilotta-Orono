@@ -13,19 +13,28 @@ class UsuarioTest {
 	private AplicacionWeb app;
 	private Muestra muestra;
 	
+	
 	@BeforeEach
 	public void setUp() {
 		
 		this.app = mock(AplicacionWeb.class);
 		this.muestra = mock(Muestra.class);
-		this.usuario = new UsuarioBasico(app);
+		this.usuario = new UsuarioBasico(app,"Pablov");
 	}
 	
 	
 	@Test
 	void testUsuarioBasicoPublicaMuestra() {	
 		usuario.publicarMuestra(muestra);
-		verify(app).registrarMuestra(muestra);;
+		verify(app).registrarMuestra(muestra);
+		assertEquals(usuario.getNivel(),"Basico");
+	}
+	
+	@Test
+	void testUsuarioBasicoVerificaMuestra() {
+		usuario.verificarMuestra(muestra,"Vinchuca");
+		verify(muestra).registrarVoto("Vinchuca");
+		
 	}
 
 }
