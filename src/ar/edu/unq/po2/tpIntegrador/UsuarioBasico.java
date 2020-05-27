@@ -11,7 +11,7 @@ public class UsuarioBasico extends Usuario {
 	}
 
 	@Override
-	protected String getNivel() {
+	public String getNivel() {
 		return this.nivel;
 	}
 

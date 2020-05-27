@@ -1,5 +1,7 @@
 package ar.edu.unq.po2.tpIntegrador;
 
+import java.util.ArrayList;
+
 public class Muestra {
 	
 	private Usuario usuario;
@@ -7,6 +9,7 @@ public class Muestra {
 	private String foto;
 	private Ivinchuca vinchua;
 	private EstadoDeMuestra estado;
+	private ArrayList<Voto> votacion;
 
 	public Muestra(Usuario usuario, Ubicacion ubicacion, String foto, Ivinchuca vinchuca) {
 		
@@ -14,7 +17,8 @@ public class Muestra {
 		this.ubicacion = ubicacion;
 		this.foto = foto;
 		this.vinchua = vinchuca;
-		this.estado = new EstadoVerificable();
+		this.estado = new EstadoVerificable(this);
+		this.votacion = new ArrayList<Voto>();
 	
 	}
 
@@ -39,6 +43,20 @@ public class Muestra {
 
 	public void setEstado(EstadoDeMuestra estado) {
 		this.estado = estado;		
+	}
+	
+	public EstadoDeMuestra getEstado() {
+		return this.estado;
+	}
+
+	public ArrayList<Voto> getVotacion() {
+		// TODO Auto-generated method stub
+		return this.votacion;
+	}
+
+	public Ivinchuca getEspecie() {
+		// TODO Auto-generated method stub
+		return this.vinchua;
 	}
 
 }

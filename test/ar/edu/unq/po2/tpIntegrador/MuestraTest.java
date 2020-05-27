@@ -3,6 +3,10 @@ package ar.edu.unq.po2.tpIntegrador;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,6 +26,11 @@ class MuestraTest {
 		this.vinchuca = mock(Sordida.class);
 		this.muestra = new Muestra(usuario,ubicacion,"foto",vinchuca);
 		this.verificada = mock(Verificada.class);
+	}
+	
+	@Test
+	void testUnaMuestraSePublicaConUnaVotacion() {
+		assertTrue(muestra.getVotacion().isEmpty());
 	}
 	
 	@Test
@@ -51,6 +60,21 @@ class MuestraTest {
 		    muestra.registrarVoto("voto");});
 	
 	}
-
-
+	@Test
+	void testSream() {
+		
+		ArrayList<String> votos = new ArrayList<String>();
+		votos.add("pablo");
+		votos.add("pablo");
+		votos.add("pablo");
+		votos.add("ro");
+		votos.add("ro");
+		
+		@SuppressWarnings("unchecked")
+		ArrayList<String> votacion = (ArrayList<String>) votos.stream().filter(v -> v.equals("pablo"))
+		.collect(Collectors.toList());
+				
+		assertEquals(votacion.size(),3);
+	}
+	
 }

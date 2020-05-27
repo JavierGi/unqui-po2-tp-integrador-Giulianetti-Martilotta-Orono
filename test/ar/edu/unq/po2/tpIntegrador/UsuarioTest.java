@@ -43,7 +43,7 @@ class UsuarioTest {
 		usuario.verificarMuestra(muestra, "Chinche");		
 		
 		verify(muestra).registrarVoto("Chinche");
-		assertEquals(muestra.esVerificable(),false);
+		
 		
 	}
 
