@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Muestra {
 	
@@ -65,61 +66,65 @@ public class Muestra {
 	}
 	
 	
-	public String test() {
-				
-		ArrayList<String> votos = new ArrayList<String>();
-		votos.add("pablo");
-		votos.add("pablo");
-		votos.add("pablo");
-		votos.add("ro");
-		votos.add("o");
-		votos.add("o");
-		votos.add("roo");
-		votos.add("roo");
-		votos.add("roo");
-		
-		
+	public String test(ArrayList<String> votos) {
+
 		@SuppressWarnings("unchecked")
-		ArrayList<String> votacionSinRepetidos = (ArrayList<String>) votos.stream().distinct().collect(Collectors.toList());
-		//HashMap<String,Long> tabla = new HashMap<String,Long>();
+		ArrayList<String> votacionSinRepetidos = (ArrayList<String>) votos.stream()
+		.distinct()
+		.collect(Collectors.toList());
 		
-		//Long ganador = 0l;
-		ArrayList<ArrayList<String>> resultado = new ArrayList<ArrayList<String>>(); 
+
+		ArrayList<ArrayList<String>> listaGeneralVotos = new ArrayList<ArrayList<String>>();
+
 		String ganador = "";
-		Integer contador = 0;
-		for(String voto : votacionSinRepetidos) {
-			
-			//Long ocurrencias = ganador = votos.stream().filter(v -> v.equals(voto)).count();
-			//tabla.put(voto, ocurrencias);
-			
-			resultado.add((ArrayList<String>) votos.stream().filter(v -> v.equals(voto)).collect(Collectors.toList()));
-			if(votos.stream().filter(v -> v.equals(voto)).count() > contador) {
-				contador = (int) votos.stream().filter(v -> v.equals(voto)).count();
+
+		Integer cantidadVotosGanador = 0;
+		
+		for(String voto : votacionSinRepetidos) {			
+	
+			Integer cantidadVotos = this.cantidadVotosDe(votos.stream(),voto);				
+			listaGeneralVotos.add(this.votosDe(votos.stream(), voto));	
+			if( cantidadVotos > cantidadVotosGanador) {
+				cantidadVotosGanador = (int) votos.stream().filter(v -> v.equals(voto)).count();
 				ganador = voto;
-			}
-			
-			
-			
+			}	
 		}
 		
-		if(contador > totalDeVotos(resultado)) {
-			return ganador;
-		}else {
-			return "Indefinido";
+		if(hayEmpate(listaGeneralVotos,cantidadVotosGanador)) {
+			ganador = "Indefinido";
 		}
-	
+			
+		return ganador;
+	}
+
+	private ArrayList<String> votosDe(Stream<String> stream, String voto) {
+		
+		return (ArrayList<String>) stream.filter(v -> v.equals(voto)).collect(Collectors.toList());
 		
 	}
 
-	public Integer totalDeVotos(ArrayList<ArrayList<String>> resultado) {
+	private Integer cantidadVotosDe(Stream<String> stream, String voto) {
+		return (int)stream
+						.filter(v -> v.equals(voto))
+						.count();
+	}
+	
+
+	public Boolean hayEmpate(ArrayList<ArrayList<String>> resultado, Integer cantidad) {
 		
-		ArrayList<Integer> votos = new ArrayList<Integer>();
-		for(ArrayList<String> valor : resultado) {
-			votos.add(valor.size());
+		if(resultado.size()>1) {
+			ArrayList<Integer> votos = new ArrayList<Integer>();
+			for(ArrayList<String> valor : resultado) {
+				votos.add(valor.size());
+			}			
+			votos = (ArrayList<Integer>) votos.stream()
+					.sorted(Comparator.reverseOrder())
+					.collect(Collectors.toList());
+				
+			return cantidad == votos.get(1);
+		}else {
+			return false;
 		}
-		
-		votos = (ArrayList<Integer>) votos.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
-		return votos.get(1);
 	}	
 	
 	

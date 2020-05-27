@@ -65,10 +65,22 @@ class MuestraTest {
 	}
 
 	@Test
-	void testSream() {
+	void test() {
+		
+		ArrayList<String> votos = new ArrayList<String>();
+		votos.add("pablo");
+		votos.add("pablo");
+		votos.add("pablo");
+		votos.add("pablo");
+		votos.add("ro");
+		votos.add("ro");
+		votos.add("ro");
+		votos.add("o");
+		votos.add("o");
+		votos.add("o");
 		
 	
-		assertEquals(muestra.test(),"Indefinido");
+		assertEquals(muestra.test(votos),"pablo");
 	}
 	
 }
