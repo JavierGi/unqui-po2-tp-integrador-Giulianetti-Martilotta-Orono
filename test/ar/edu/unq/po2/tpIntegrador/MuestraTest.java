@@ -4,11 +4,14 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import com.sun.org.apache.xpath.internal.functions.Function;
 
 
 class MuestraTest {
@@ -60,21 +63,12 @@ class MuestraTest {
 		    muestra.registrarVoto("voto");});
 	
 	}
+
 	@Test
 	void testSream() {
 		
-		ArrayList<String> votos = new ArrayList<String>();
-		votos.add("pablo");
-		votos.add("pablo");
-		votos.add("pablo");
-		votos.add("ro");
-		votos.add("ro");
-		
-		@SuppressWarnings("unchecked")
-		ArrayList<String> votacion = (ArrayList<String>) votos.stream().filter(v -> v.equals("pablo"))
-		.collect(Collectors.toList());
-				
-		assertEquals(votacion.size(),3);
+	
+		assertEquals(muestra.test(),"Indefinido");
 	}
 	
 }
