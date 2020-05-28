@@ -85,7 +85,7 @@ public class Muestra {
 			Integer cantidadVotos = this.cantidadVotosDe(votos.stream(),voto);				
 			listaGeneralVotos.add(this.votosDe(votos.stream(), voto));	
 			if( cantidadVotos > cantidadVotosGanador) {
-				cantidadVotosGanador = (int) votos.stream().filter(v -> v.equals(voto)).count();
+				cantidadVotosGanador = this.cantidadVotosDe(votos.stream(),voto);
 				ganador = voto;
 			}	
 		}
