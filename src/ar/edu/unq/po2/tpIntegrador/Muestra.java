@@ -38,7 +38,7 @@ public class Muestra {
 		this.usuario = usuario;
 	}
 	
-	public void registrarVoto(Voto voto) throws VotacionCerradaException{
+	public void registrarVerificacion(Voto voto) throws VotacionCerradaException{
 		
 		this.estado.agregarVoto(voto);
 	}
@@ -68,6 +68,28 @@ public class Muestra {
 	public Itipo getEspecie() {
 		// TODO Auto-generated method stub
 		return this.vinchuca;
+	}
+	
+	public ArrayList<Usuario> usuariosQueVotaron(){
+		
+		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		for(Voto voto : this.getVotacion()) {
+			
+			usuarios.add(voto.getUsuario());
+		}
+		return usuarios;
+	}
+
+
+	public boolean noRegistraVotoDe(Usuario username) {
+		
+		return this.usuariosQueVotaron().stream().filter(v-> v.equals(username)).collect(Collectors.toList()).size()==0;
+	}
+
+
+
+	public void agregarVoto(Voto voto) {
+		this.getVotacion().add(voto);
 	}	
 	
 

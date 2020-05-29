@@ -7,11 +7,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
 class UsuarioTest {
 	
 	private Usuario usuario;
 	private AplicacionWeb app;
 	private Muestra muestra;
+	private Voto voto;
+	private EstadoDeMuestra estadoExpertos;
 	
 	
 	@BeforeEach
@@ -20,31 +25,36 @@ class UsuarioTest {
 		this.app = mock(AplicacionWeb.class);
 		this.muestra = mock(Muestra.class);
 		this.usuario = new UsuarioVariable(app,"Pablov");
+		this.voto = mock(Voto.class);
+		this.estadoExpertos = mock(VerificacionExpertos.class);
 	}
 	
 	
 	@Test
 	void testUsuarioBasicoPublicaMuestra() {	
 		usuario.publicarMuestra(muestra);
-		verify(app).registrarMuestra(muestra);
-		assertEquals(usuario.getNivel(),"Basico");
+		verify(app).registrarMuestra(muestra);		
 	}
 	
 	@Test
 	void testUsuarioBasicoVerificaMuestra() throws VotacionCerradaException {
-		usuario.verificarMuestra(muestra,"Vinchuca");
-		verify(muestra).registrarVoto("Vinchuca");		
+		
+		usuario.verificarMuestra(muestra,voto);
+		verify(muestra).registrarVoto(voto);		
+
 	}
 	
+	@SuppressWarnings("unlikely-arg-type")
 	@Test
-	void testUsuarioNoPuedeVotarMuestraVerificada() throws VotacionCerradaException {
-					
-		when(muestra.esVerificable()).thenReturn(false);
-		usuario.verificarMuestra(muestra, "Chinche");		
+	void demoLambda() {
 		
-		verify(muestra).registrarVoto("Chinche");
+		ArrayList<String> lista  = new ArrayList<String>();
 		
+		lista.add("Pablo");
+		lista.add("Pablo");
+		lista.add("ro");
+		
+		assertTrue(lista.stream().filter(v-> v.equals("o")).collect(Collectors.toList()).size()>0);
 		
 	}
-
 }

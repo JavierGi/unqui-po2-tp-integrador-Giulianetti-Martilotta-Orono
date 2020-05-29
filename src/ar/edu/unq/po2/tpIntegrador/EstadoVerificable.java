@@ -26,20 +26,20 @@ public class EstadoVerificable extends EstadoDeMuestra {
 
 	public void agregarVoto(Voto voto) {
 		
-		if(this.noRegistraVotoDe(voto.getUsuario())) {
-			
-			this.verificarModificaciónDeEstado(voto);
+		if(super.muestra.noRegistraVotoDe(voto.getUsuario())) {
+			this.verificarModificacionDeEstado(voto);			
 			this.concretarVotación(voto);	
 		}
+		
 	}
 
 	public void concretarVotación(Voto voto) {
 		
-		this.muestra.getVotacion().add(voto);
+		this.muestra.agregarVoto(voto);
 		
 	}
 
-	public void verificarModificaciónDeEstado(Voto voto) {
+	public void verificarModificacionDeEstado(Voto voto) {
 		
 		if(voto.getNivelUsuario() == "Experto") {
 			this.muestra.setEstado(new VerificacionExpertos(this.muestra));
@@ -47,10 +47,6 @@ public class EstadoVerificable extends EstadoDeMuestra {
 		
 	}
 
-	@SuppressWarnings("unlikely-arg-type")
-	public boolean noRegistraVotoDe(Usuario usuario) {
 
-		
-		return this.muestra.getVotacion().stream().equals(usuario.getUsername());
-	}
+
 }

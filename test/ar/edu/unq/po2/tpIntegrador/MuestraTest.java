@@ -73,23 +73,24 @@ class MuestraTest {
 		when(usuario2.getUsername()).thenReturn("ro");
 		when(voto.getUsuario()).thenReturn(usuario2);
 		when(voto.getNivelUsuario()).thenReturn("Experto");
-		muestra.registrarVoto(voto);
+		
+		muestra.registrarVerificacion(voto);
 		
 		
 		verify(muestra.getEstado()).agregarVoto(voto);
 	}
 	
-	/*@Test
-	void testMuestraCerradaNoRegistraVoto() throws VotacionCerradaException {		
+	@Test
+	void testMuestraRegistraVotoDeUsuario() throws VotacionCerradaException {
 		
+		when(usuario.getUsername()).thenReturn("Pablo");
+		when(voto.getUsuario()).thenReturn(usuario);
+		muestra.registrarVerificacion(voto);
 		
-		muestra.setEstado(verificada);
-		when(verificada.getEstado()).thenReturn(false);
-		
-		assertThrows(VotacionCerradaException.class, () -> {
-		    muestra.registrarVoto("voto");});
-	
-	}*/
+		assertTrue(muestra.noRegistraVotoDe(usuario));
+		assertFalse(muestra.noRegistraVotoDe(usuario2));
+
+	}
 
 
 	
