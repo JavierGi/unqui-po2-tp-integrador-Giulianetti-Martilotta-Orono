@@ -20,7 +20,7 @@ class VotoTest {
 	@BeforeEach
 	public void setUp() {
 		
-		this.usuario = mock(UsuarioBasico.class);
+		this.usuario = mock(UsuarioVariable.class);
 		when(usuario.getNivel()).thenReturn("Basico");
 		this.muestra = mock(Muestra.class);
 		this.appWeb = mock(AplicacionWeb.class);

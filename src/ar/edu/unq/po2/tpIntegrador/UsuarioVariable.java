@@ -1,10 +1,10 @@
 package ar.edu.unq.po2.tpIntegrador;
 
-public class UsuarioBasico extends Usuario {
+public class UsuarioVariable extends Usuario {
 	
 	private String nivel;
 	
-	public UsuarioBasico(AplicacionWeb app, String username) {
+	public UsuarioVariable(AplicacionWeb app, String username) {
 		
 		super(app,username);
 		this.nivel = "Basico";
@@ -16,7 +16,7 @@ public class UsuarioBasico extends Usuario {
 	}
 
 	@Override
-	protected void verificarMuestra(Muestra muestra, String voto) throws VotacionCerradaException {
+	public void verificarMuestra(Muestra muestra, Voto voto) throws VotacionCerradaException {
 		muestra.registrarVoto(voto);
 	}
 

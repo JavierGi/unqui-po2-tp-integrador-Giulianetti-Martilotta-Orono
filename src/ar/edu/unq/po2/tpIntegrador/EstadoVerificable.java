@@ -1,6 +1,7 @@
 package ar.edu.unq.po2.tpIntegrador;
 
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class EstadoVerificable extends EstadoDeMuestra {
 	
@@ -23,4 +24,33 @@ public class EstadoVerificable extends EstadoDeMuestra {
 				
 	}
 
+	public void agregarVoto(Voto voto) {
+		
+		if(this.noRegistraVotoDe(voto.getUsuario())) {
+			
+			this.verificarModificaciónDeEstado(voto);
+			this.concretarVotación(voto);	
+		}
+	}
+
+	public void concretarVotación(Voto voto) {
+		
+		this.muestra.getVotacion().add(voto);
+		
+	}
+
+	public void verificarModificaciónDeEstado(Voto voto) {
+		
+		if(voto.getNivelUsuario() == "Experto") {
+			this.muestra.setEstado(new VerificacionExpertos(this.muestra));
+		}
+		
+	}
+
+	@SuppressWarnings("unlikely-arg-type")
+	public boolean noRegistraVotoDe(Usuario usuario) {
+
+		
+		return this.muestra.getVotacion().stream().equals(usuario.getUsername());
+	}
 }

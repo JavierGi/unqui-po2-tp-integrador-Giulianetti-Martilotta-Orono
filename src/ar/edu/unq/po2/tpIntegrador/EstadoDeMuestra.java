@@ -12,4 +12,6 @@ public abstract class EstadoDeMuestra {
 
 	protected abstract Itipo getEspecia();
 
+	protected abstract void agregarVoto(Voto voto);
+
 }

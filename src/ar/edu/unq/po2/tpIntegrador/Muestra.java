@@ -28,14 +28,19 @@ public class Muestra {
 	
 	}
 
-	public void registrarVoto(String voto) throws VotacionCerradaException{
+	
+	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+	
+	public void registrarVoto(Voto voto) throws VotacionCerradaException{
 		
-		if(this.esVerificable()) {
-			this.foto = voto;
-		}else {
-			throw new VotacionCerradaException("La votacion ya esta cerrada");
-		}
-		
+		this.estado.agregarVoto(voto);
 	}
 	
 	public String exVotacionCerrada() {

@@ -19,7 +19,7 @@ class UsuarioTest {
 		
 		this.app = mock(AplicacionWeb.class);
 		this.muestra = mock(Muestra.class);
-		this.usuario = new UsuarioBasico(app,"Pablov");
+		this.usuario = new UsuarioVariable(app,"Pablov");
 	}
 	
 	

@@ -30,4 +30,10 @@ public class Voto {
 		return this.votable;		
 	}
 
+
+	public Usuario getUsuario() {
+		// TODO Auto-generated method stub
+		return this.usuario;
+	}
+
 }
