@@ -40,21 +40,9 @@ class UsuarioTest {
 	void testUsuarioBasicoVerificaMuestra() throws VotacionCerradaException {
 		
 		usuario.verificarMuestra(muestra,voto);
-		verify(muestra).registrarVoto(voto);		
+		when(voto.getUsuario()).thenReturn(usuario);
+		when(voto.getNivelUsuario()).thenReturn("Basico");
+		verify(muestra).registrarVerificacion(voto);
 
-	}
-	
-	@SuppressWarnings("unlikely-arg-type")
-	@Test
-	void demoLambda() {
-		
-		ArrayList<String> lista  = new ArrayList<String>();
-		
-		lista.add("Pablo");
-		lista.add("Pablo");
-		lista.add("ro");
-		
-		assertTrue(lista.stream().filter(v-> v.equals("o")).collect(Collectors.toList()).size()>0);
-		
 	}
 }

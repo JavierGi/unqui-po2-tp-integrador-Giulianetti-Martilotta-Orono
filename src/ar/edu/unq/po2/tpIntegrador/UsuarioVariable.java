@@ -17,7 +17,7 @@ public class UsuarioVariable extends Usuario {
 
 	@Override
 	public void verificarMuestra(Muestra muestra, Voto voto) throws VotacionCerradaException {
-		muestra.registrarVoto(voto);
+		muestra.registrarVerificacion(voto);
 	}
 
 }
