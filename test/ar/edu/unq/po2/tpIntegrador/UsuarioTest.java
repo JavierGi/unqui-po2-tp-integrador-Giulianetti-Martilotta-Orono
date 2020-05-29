@@ -26,7 +26,7 @@ class UsuarioTest {
 		this.muestra = mock(Muestra.class);
 		this.usuario = new UsuarioVariable(app,"Pablov");
 		this.voto = mock(Voto.class);
-		this.estadoExpertos = mock(VerificacionExpertos.class);
+		this.estadoExpertos = mock(EstadoVerificacionExpertos.class);
 	}
 	
 	

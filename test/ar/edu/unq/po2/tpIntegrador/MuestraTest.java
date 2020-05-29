@@ -34,7 +34,7 @@ class MuestraTest {
 		this.muestra = new Muestra(usuario,ubicacion,"foto",vinchuca);
 		this.voto = mock(Voto.class);
 		this.verificada = mock(Verificada.class);
-		this.verificacionExpertos = mock(VerificacionExpertos.class);
+		this.verificacionExpertos = mock(EstadoVerificacionExpertos.class);
 	}
 	
 	@Test

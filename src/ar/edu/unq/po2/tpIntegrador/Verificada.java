@@ -20,4 +20,16 @@ public class Verificada extends EstadoDeMuestra {
 		return null;
 	}
 
+	@Override
+	public void verificarModificacionDeEstado(Voto voto) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void agregarVoto(Voto voto) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

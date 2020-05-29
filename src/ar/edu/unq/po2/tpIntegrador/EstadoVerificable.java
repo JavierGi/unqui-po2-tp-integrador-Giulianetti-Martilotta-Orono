@@ -18,10 +18,7 @@ public class EstadoVerificable extends EstadoDeMuestra {
 
 	@Override
 	public Itipo getEspecia() {	
-		
-		//Implementar que devuelva la que va ganando o en caso de empate indefinido
-		return null;
-				
+		return null;				
 	}
 
 	public void agregarVoto(Voto voto) {
@@ -42,7 +39,7 @@ public class EstadoVerificable extends EstadoDeMuestra {
 	public void verificarModificacionDeEstado(Voto voto) {
 		
 		if(voto.getNivelUsuario() == "Experto") {
-			this.muestra.setEstado(new VerificacionExpertos(this.muestra));
+			this.muestra.setEstado(new EstadoVerificacionExpertos(this.muestra));
 		}
 		
 	}
