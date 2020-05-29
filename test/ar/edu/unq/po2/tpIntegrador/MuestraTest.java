@@ -19,14 +19,14 @@ class MuestraTest {
 	private Muestra muestra;
 	private Usuario usuario;
 	private Ubicacion ubicacion;
-	private Ivinchuca vinchuca;
+	private Itipo vinchuca;
 	private EstadoDeMuestra verificada;
 	
 	@BeforeEach
 	public void setUp() {		
 		this.ubicacion = mock(Ubicacion.class);
 		this.usuario = mock(UsuarioBasico.class);
-		this.vinchuca = mock(Sordida.class);
+		this.vinchuca = mock(Vinchuca.class);
 		this.muestra = new Muestra(usuario,ubicacion,"foto",vinchuca);
 		this.verificada = mock(Verificada.class);
 	}
@@ -64,23 +64,6 @@ class MuestraTest {
 	
 	}
 
-	@Test
-	void test() {
-		
-		ArrayList<String> votos = new ArrayList<String>();
-		votos.add("pablo");
-		votos.add("pablo");
-		votos.add("pablo");
-		votos.add("pablo");
-		votos.add("ro");
-		votos.add("ro");
-		votos.add("ro");
-		votos.add("o");
-		votos.add("o");
-		votos.add("o");
-		
-	
-		assertEquals(muestra.test(votos),"pablo");
-	}
+
 	
 }

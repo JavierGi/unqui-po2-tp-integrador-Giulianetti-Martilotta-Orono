@@ -1,9 +1,9 @@
 package ar.edu.unq.po2.tpIntegrador;
 
-public class ChinceFoliada implements Ivotable {
+public class Votable implements Itipo {
 	
 	private String tipo;
-	public ChinceFoliada() {
+	public Votable() {
 		this.tipo = "Chince Foliada";
 	}
 	

@@ -5,12 +5,12 @@ import java.time.LocalDate;
 public class Voto {
 	
 	private Usuario usuario;
-	private Ivotable votable;
+	private Itipo votable;
 	private String nivelUsuario;
 	private LocalDate fechaVoto;
 
 
-	public Voto(Usuario usuario, Ivotable votable) {
+	public Voto(Usuario usuario, Itipo votable) {
 		
 		this.usuario = usuario;
 		this.nivelUsuario = usuario.getNivel();
@@ -26,8 +26,8 @@ public class Voto {
 	}
 
 
-	public String getTipo() {
-		return this.votable.getTipo();		
+	public Itipo getTipo() {
+		return this.votable;		
 	}
 
 }

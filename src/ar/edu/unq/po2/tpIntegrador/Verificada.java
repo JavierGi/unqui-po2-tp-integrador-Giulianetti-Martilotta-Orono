@@ -15,7 +15,7 @@ public class Verificada extends EstadoDeMuestra {
 	}
 
 	@Override
-	protected Ivotable getEspecia() {
+	protected Itipo getEspecia() {
 		// Implementar que devuelva que tipo es si se puede devolver un tipo
 		return null;
 	}

@@ -16,7 +16,7 @@ public class EstadoVerificable extends EstadoDeMuestra {
 	}
 
 	@Override
-	public Ivotable getEspecia() {	
+	public Itipo getEspecia() {	
 		
 		//Implementar que devuelva la que va ganando o en caso de empate indefinido
 		return null;

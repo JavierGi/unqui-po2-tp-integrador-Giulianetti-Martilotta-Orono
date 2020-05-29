@@ -13,16 +13,16 @@ public class Muestra {
 	private Usuario usuario;
 	private Ubicacion ubicacion;
 	private String foto;
-	private Ivinchuca vinchua;
+	private Itipo vinchuca;
 	private EstadoDeMuestra estado;
 	private ArrayList<Voto> votacion;
 
-	public Muestra(Usuario usuario, Ubicacion ubicacion, String foto, Ivinchuca vinchuca) {
+	public Muestra(Usuario usuario, Ubicacion ubicacion, String foto, Itipo vinchuca) {
 		
 		this.usuario = usuario;
 		this.ubicacion = ubicacion;
 		this.foto = foto;
-		this.vinchua = vinchuca;
+		this.vinchuca = vinchuca;
 		this.estado = new EstadoVerificable(this);
 		this.votacion = new ArrayList<Voto>();
 	
@@ -60,73 +60,10 @@ public class Muestra {
 		return this.votacion;
 	}
 
-	public Ivinchuca getEspecie() {
+	public Itipo getEspecie() {
 		// TODO Auto-generated method stub
-		return this.vinchua;
-	}
-	
-	
-	public String test(ArrayList<String> votos) {
-
-		@SuppressWarnings("unchecked")
-		ArrayList<String> votacionSinRepetidos = (ArrayList<String>) votos.stream()
-		.distinct()
-		.collect(Collectors.toList());
-		
-
-		ArrayList<ArrayList<String>> listaGeneralVotos = new ArrayList<ArrayList<String>>();
-
-		String ganador = "";
-
-		Integer cantidadVotosGanador = 0;
-		
-		for(String voto : votacionSinRepetidos) {			
-	
-			Integer cantidadVotos = this.cantidadVotosDe(votos.stream(),voto);				
-			listaGeneralVotos.add(this.votosDe(votos.stream(), voto));	
-			if( cantidadVotos > cantidadVotosGanador) {
-				cantidadVotosGanador = this.cantidadVotosDe(votos.stream(),voto);
-				ganador = voto;
-			}	
-		}
-		
-		if(hayEmpate(listaGeneralVotos,cantidadVotosGanador)) {
-			ganador = "Indefinido";
-		}
-			
-		return ganador;
-	}
-
-	private ArrayList<String> votosDe(Stream<String> stream, String voto) {
-		
-		return (ArrayList<String>) stream.filter(v -> v.equals(voto)).collect(Collectors.toList());
-		
-	}
-
-	private Integer cantidadVotosDe(Stream<String> stream, String voto) {
-		return (int)stream
-						.filter(v -> v.equals(voto))
-						.count();
-	}
-	
-
-	public Boolean hayEmpate(ArrayList<ArrayList<String>> resultado, Integer cantidad) {
-		
-		if(resultado.size()>1) {
-			ArrayList<Integer> votos = new ArrayList<Integer>();
-			for(ArrayList<String> valor : resultado) {
-				votos.add(valor.size());
-			}			
-			votos = (ArrayList<Integer>) votos.stream()
-					.sorted(Comparator.reverseOrder())
-					.collect(Collectors.toList());
-				
-			return cantidad == votos.get(1);
-		}else {
-			return false;
-		}
+		return this.vinchuca;
 	}	
-	
 	
 
 }

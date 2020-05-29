@@ -13,7 +13,7 @@ class VotoTest {
 	private Muestra muestra;
 	private AplicacionWeb appWeb;
 	private Usuario usuario;
-	private Ivotable sordida;
+	private Itipo sordida;
 	private EstadoDeMuestra verificada;
 	
 	
@@ -24,7 +24,7 @@ class VotoTest {
 		when(usuario.getNivel()).thenReturn("Basico");
 		this.muestra = mock(Muestra.class);
 		this.appWeb = mock(AplicacionWeb.class);
-		this.sordida = mock(Sordida.class);
+		this.sordida = mock(Vinchuca.class);
 		when(sordida.getTipo()).thenReturn("Sordida");
 		this.voto = new Voto(usuario, sordida);		
 		this.verificada = mock(Verificada.class);

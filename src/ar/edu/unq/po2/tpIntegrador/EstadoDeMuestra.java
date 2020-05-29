@@ -10,6 +10,6 @@ public abstract class EstadoDeMuestra {
 
 	protected abstract boolean getEstado();
 
-	protected abstract Ivotable getEspecia();
+	protected abstract Itipo getEspecia();
 
 }
