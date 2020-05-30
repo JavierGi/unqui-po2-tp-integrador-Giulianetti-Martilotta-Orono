@@ -44,17 +44,13 @@ public class EstadoVerificacionExpertos extends EstadoDeMuestra {
 		
 	}
 
-	private boolean hayCoincidencia(Itipo tipo) {
-		
-		ArrayList<Itipo> votosExpertos = new ArrayList<Itipo>();
-		for(Voto voto : this.muestra.getVotacion()) {
-			
-			if(voto.getNivelUsuario() == "Experto") {
-				votosExpertos.add(voto.getTipo());
-			}
-			
-		}
-		return votosExpertos.stream().filter(t -> t.equals(tipo)).collect(Collectors.toList()).size() == 2;
+	public boolean hayCoincidencia(Itipo tipo) {
+				
+		return this.muestra.getVotosDeNivel("Experto")
+				.stream()
+				.filter(v -> v.getTipo() == tipo)
+				.collect(Collectors.toList()).size() > 1;
+										
 	}
 
 	@Override

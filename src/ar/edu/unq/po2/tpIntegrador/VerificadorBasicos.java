@@ -15,7 +15,7 @@ public class VerificadorBasicos implements IverificadorDeMuestras {
 		
 		ArrayList<String> votos = this.generarListaDeTipos(muestra.getVotacion());
 
-		@SuppressWarnings("unchecked")
+		
 		ArrayList<String> votacionSinRepetidos = (ArrayList<String>) votos.stream()
 		.distinct()
 		.collect(Collectors.toList());

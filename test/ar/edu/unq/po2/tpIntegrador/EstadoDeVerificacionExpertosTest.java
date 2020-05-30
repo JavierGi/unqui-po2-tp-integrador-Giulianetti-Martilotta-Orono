@@ -3,17 +3,21 @@ package ar.edu.unq.po2.tpIntegrador;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class EstadoDeVerificacionExpertosTest {
 	
-	private EstadoDeMuestra estado;
+	private EstadoVerificacionExpertos estado;
 	private Usuario experto;
 	private Usuario otroExperto;
 	private Muestra muestra;
 	private Voto voto;
+	private Voto otroVoto;
 	private Itipo tipo;
+	private ArrayList<Voto> votos;
 	
 	
 	@BeforeEach
@@ -25,8 +29,10 @@ class EstadoDeVerificacionExpertosTest {
 		this.otroExperto = mock(UsuarioVariable.class);
 		when(otroExperto.getNivel()).thenReturn("Experto");
 		this.voto = mock(Voto.class);
+		this.otroVoto = mock(Voto.class);
 		this.tipo = mock(Itipo.class);
 		this.estado = new EstadoVerificacionExpertos(this.muestra);
+		this.votos = new ArrayList<Voto>();
 	}
 	
 	
@@ -42,14 +48,29 @@ class EstadoDeVerificacionExpertosTest {
 		verify(muestra, times(0)).setEstado(any(EstadoDeMuestra.class));
 	}
 	
-	@Test 
-	void testCoinsidenDosExpertosEnSuVotacion(){
+	@Test
+	void hayCoincidenciaEntreExpertos() {
 		
+		when(voto.getNivelUsuario()).thenReturn("Experto");
 		when(voto.getUsuario()).thenReturn(experto);
 		when(voto.getTipo()).thenReturn(tipo);
-		when(muestra.noRegistraVotoDe(experto)).thenReturn(true);
-		estado.agregarVoto(voto);
+		when(tipo.getTipo()).thenReturn("Sordida");
+		when(otroVoto.getNivelUsuario()).thenReturn("Experto");
+		when(otroVoto.getTipo()).thenReturn(tipo);
+		when(otroVoto.getUsuario()).thenReturn(otroExperto);
+		when(muestra.noRegistraVotoDe(otroExperto)).thenReturn(true);
+		votos.add(voto);
+		//votos.add(otroVoto);
+		when(muestra.getVotacion()).thenReturn(votos);
+		
+		estado.agregarVoto(otroVoto);
+		//estado.verificarModificacionDeEstado(otroVoto);
+		
+		
+		verify(muestra,times(1)).setEstado(any(EstadoDeMuestra.class));
 		
 	}
+	
+	
 
 }

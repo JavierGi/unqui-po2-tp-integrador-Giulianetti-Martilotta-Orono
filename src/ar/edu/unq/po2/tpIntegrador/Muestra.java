@@ -70,27 +70,34 @@ public class Muestra {
 		return this.vinchuca;
 	}
 	
-	public ArrayList<Usuario> usuariosQueVotaron(){
-		
-		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-		for(Voto voto : this.getVotacion()) {
-			
-			usuarios.add(voto.getUsuario());
-		}
-		return usuarios;
-	}
-
 
 	public boolean noRegistraVotoDe(Usuario username) {
 		
-		return this.usuariosQueVotaron().stream().filter(v-> v.equals(username)).collect(Collectors.toList()).size()==0;
+		return this.getVotosDe(username).size() == 0;
 	}
 
 
 
 	public void agregarVoto(Voto voto) {
 		this.getVotacion().add(voto);
-	}	
-	
+	}
 
+	
+	public ArrayList<Voto> getVotosDe(Usuario usuario) {
+		
+		return (ArrayList<Voto>) this.getVotacion()
+										.stream()
+										.filter(v -> v.getUsuario() == usuario)
+										.collect(Collectors.toList());
+		}
+
+
+	public ArrayList<Voto> getVotosDeNivel(String nivel) {
+				
+		return (ArrayList<Voto>) this.getVotacion()
+				.stream()
+				.filter(v -> v.getNivelUsuario() == nivel)
+				.collect(Collectors.toList());	
+	
+	}
 }
