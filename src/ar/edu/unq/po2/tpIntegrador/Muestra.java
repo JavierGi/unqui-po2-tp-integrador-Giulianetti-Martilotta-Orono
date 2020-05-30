@@ -100,4 +100,12 @@ public class Muestra {
 				.collect(Collectors.toList());	
 	
 	}
+
+
+
+	public Integer cantidadVotosDeTipo(Itipo tipo) {
+		
+		
+		return (int) this.getVotacion().stream().filter(v -> v.getTipo() == tipo).count();
+	}
 }

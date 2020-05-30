@@ -22,6 +22,7 @@ class MuestraTest {
 	private Usuario usuario3;
 	private Ubicacion ubicacion;
 	private Itipo vinchuca;
+	private Itipo chinche;
 	private Voto voto;
 	private Voto voto2;
 	private Voto voto3;
@@ -40,6 +41,7 @@ class MuestraTest {
 		this.voto2 = mock(Voto.class);
 		this.voto3 = mock(Voto.class);
 		this.verificada = mock(Verificada.class);
+		this.chinche = mock(Vinchuca.class);
 		this.verificacionExpertos = mock(EstadoVerificacionExpertos.class);
 	}
 	
@@ -105,6 +107,19 @@ class MuestraTest {
 		muestra.agregarVoto(voto3);
 		
 		assertEquals(2, muestra.getVotosDeNivel("Experto").size());
+		
+	}
+	
+	@Test 
+	void testUnMuestraDevuelveCantidadDeVotosDeUnTipo(){
+		
+		when(voto.getTipo()).thenReturn(vinchuca);
+		when(voto2.getTipo()).thenReturn(chinche);
+		
+		muestra.agregarVoto(voto);
+		muestra.agregarVoto(voto2);
+		
+		assertEquals(1,muestra.cantidadVotosDeTipo(vinchuca));	
 		
 	}
 

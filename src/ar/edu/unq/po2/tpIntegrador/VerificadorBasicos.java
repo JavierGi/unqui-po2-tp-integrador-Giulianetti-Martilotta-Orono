@@ -82,6 +82,35 @@ public class VerificadorBasicos implements IverificadorDeMuestras {
 			return false;
 		}
 	}	
+	
+	
+	public Itipo controlar(Muestra muestra) {
+		
+		int contador = 0;
+		Itipo ganador = null;
+		for(Voto voto : muestra.getVotacion()) {
+			if(muestra.cantidadVotosDeTipo(voto.getTipo()) > contador) {
+				contador = muestra.cantidadVotosDeTipo(voto.getTipo());
+				ganador = voto.getTipo();
+			}
+			
+		}
+		
+		if(empate(muestra, contador)) {
+			ganador = new Votable("Indefinido");
+		}
+		
+		return ganador;
+		
+	}
+
+	public boolean empate(Muestra muestra, int contador) {
+			
+		return muestra.getVotacion().stream()
+				.filter(v -> muestra.cantidadVotosDeTipo(v.getTipo()) == contador)
+				.collect(Collectors.toList())
+				.size()>1;
+	}
 
 
 

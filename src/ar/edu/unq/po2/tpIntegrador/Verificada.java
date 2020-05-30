@@ -32,4 +32,10 @@ public class Verificada extends EstadoDeMuestra {
 		
 	}
 
+	@Override
+	protected void concretarVotación(Voto voto) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

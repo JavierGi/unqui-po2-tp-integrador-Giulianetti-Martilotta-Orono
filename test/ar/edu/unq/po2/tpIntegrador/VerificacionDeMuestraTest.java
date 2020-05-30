@@ -76,4 +76,25 @@ class VerificacionDeMuestraTest {
 		assertEquals("Indefinido",	verificador.verificarMuestra(muestra));
 		
 	}
+	
+	@Test
+	void testVerificacionDeUnEmpateEnLaVotacion2() {
+		
+		this.votacion.add(voto);
+		this.votacion.add(voto2);
+		
+		
+		
+		when(muestra.getVotacion()).thenReturn(votacion);
+		when(sordida.getTipo()).thenReturn("Sordida");
+		when(chinche.getTipo()).thenReturn("Sordida");
+		when(voto.getTipo()).thenReturn(sordida);
+		when(voto2.getTipo()).thenReturn(chinche);
+		when(muestra.cantidadVotosDeTipo(sordida)).thenReturn(2);
+		
+		
+		
+		assertEquals(sordida.getTipo(),verificador.controlar(muestra).getTipo());
+		
+	}
 }
