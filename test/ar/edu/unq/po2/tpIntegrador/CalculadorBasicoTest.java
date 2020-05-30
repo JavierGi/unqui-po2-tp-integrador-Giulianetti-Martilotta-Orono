@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class VerificacionDeMuestraTest {
+class CalculadorBasicoTest {
 	
 	private Muestra muestra;
 	private Voto voto;
@@ -16,7 +16,7 @@ class VerificacionDeMuestraTest {
 	private Voto voto3;
 	private Itipo sordida;
 	private Itipo chinche;
-	private VerificadorBasicos verificador;
+	private CalculadorBasico verificador;
 	private ArrayList<Voto> votacion;
 	private ArrayList<Voto> votacion2;
 	private ArrayList<ArrayList<Voto>> votaciones;
@@ -25,7 +25,7 @@ class VerificacionDeMuestraTest {
 	public void setUp() {
 		
 		this.muestra = mock(Muestra.class);
-		this.verificador = new VerificadorBasicos();
+		this.verificador = new CalculadorBasico();
 		this.votacion = new ArrayList<Voto>();
 		this.votacion2 = new ArrayList<Voto>();
 		this.voto = mock(Voto.class);
@@ -52,8 +52,10 @@ class VerificacionDeMuestraTest {
 		when(voto.getTipo()).thenReturn(sordida);
 		when(voto2.getTipo()).thenReturn(sordida);
 		when(voto3.getTipo()).thenReturn(chinche);
+		when(muestra.cantidadVotosDeTipo(sordida)).thenReturn(2);
+		when(muestra.cantidadVotosDeTipo(chinche)).thenReturn(1);
 		
-		assertEquals("Sordida",	verificador.verificarMuestra(muestra));
+		assertEquals("Sordida",	verificador.calcularTipo(muestra).getTipo());
 		
 		
 	}
@@ -73,7 +75,7 @@ class VerificacionDeMuestraTest {
 		when(voto2.getTipo()).thenReturn(chinche);
 		
 		
-		assertEquals("Indefinido",	verificador.verificarMuestra(muestra));
+		assertEquals("Indefinido",	verificador.calcularTipo(muestra).getTipo());
 		
 	}
 	
@@ -94,7 +96,7 @@ class VerificacionDeMuestraTest {
 		
 		
 		
-		assertEquals(sordida.getTipo(),verificador.controlar(muestra).getTipo());
+		assertEquals(sordida.getTipo(),verificador.calcularTipo(muestra).getTipo());
 		
 	}
 }
