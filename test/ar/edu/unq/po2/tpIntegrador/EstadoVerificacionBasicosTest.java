@@ -62,6 +62,7 @@ class EstadoVerificacionBasicosTest {
 		
 		verify(muestra).setEstado(any(EstadoDeMuestra.class));
 		verify(muestra, times(1)).agregarVoto(voto);
+		verify(muestra, times(1)).setCalculador(any(Icalculador.class));
 		
 	}
 

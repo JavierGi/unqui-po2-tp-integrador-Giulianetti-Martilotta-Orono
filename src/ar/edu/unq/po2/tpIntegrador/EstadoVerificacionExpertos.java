@@ -18,7 +18,7 @@ public class EstadoVerificacionExpertos extends EstadoDeMuestra {
 	}
 
 	@Override
-	protected Itipo getEspecia() {
+	protected Itipo getEspecie() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -37,21 +37,14 @@ public class EstadoVerificacionExpertos extends EstadoDeMuestra {
 	@Override
 	public void verificarModificacionDeEstado(Voto voto) {
 		
-		if(this.hayCoincidencia(voto.getTipo())) {
+		if(this.muestra.cantidadVotosDeTipo(voto.getTipo()) > 1) {
 			
 			this.muestra.setEstado(new Verificada(this.muestra));
+			this.muestra.setCalculador(new CalculadorVerificado(voto));
 		}
 		
 	}
 
-	public boolean hayCoincidencia(Itipo tipo) {
-				
-		return this.muestra.getVotosDeNivel("Experto")
-				.stream()
-				.filter(v -> v.getTipo() == tipo)
-				.collect(Collectors.toList()).size() > 1;
-										
-	}
 
 	@Override
 	protected void concretarVotación(Voto voto) {

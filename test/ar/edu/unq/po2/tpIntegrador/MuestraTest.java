@@ -19,7 +19,6 @@ class MuestraTest {
 	private Muestra muestra;
 	private Usuario usuario;
 	private Usuario usuario2;
-	private Usuario usuario3;
 	private Ubicacion ubicacion;
 	private Itipo vinchuca;
 	private Itipo chinche;
@@ -27,14 +26,13 @@ class MuestraTest {
 	private Voto voto2;
 	private Voto voto3;
 	private EstadoDeMuestra verificada;
-	private EstadoDeMuestra verificacionExpertos;
+	private Icalculador calculador;
 	
 	@BeforeEach
 	public void setUp() {		
 		this.ubicacion = mock(Ubicacion.class);
 		this.usuario = mock(UsuarioVariable.class);
 		this.usuario2 = mock(UsuarioVariable.class);
-		this.usuario3 = mock(UsuarioVariable.class);
 		this.vinchuca = mock(Vinchuca.class);
 		this.muestra = new Muestra(usuario,ubicacion,"foto",vinchuca);
 		this.voto = mock(Voto.class);
@@ -42,7 +40,7 @@ class MuestraTest {
 		this.voto3 = mock(Voto.class);
 		this.verificada = mock(Verificada.class);
 		this.chinche = mock(Vinchuca.class);
-		this.verificacionExpertos = mock(EstadoVerificacionExpertos.class);
+		this.calculador = mock(Icalculador.class);
 	}
 	
 	@Test
@@ -115,11 +113,23 @@ class MuestraTest {
 		
 		when(voto.getTipo()).thenReturn(vinchuca);
 		when(voto2.getTipo()).thenReturn(chinche);
+		when(vinchuca.getTipo()).thenReturn("Sordida");
+		when(chinche.getTipo()).thenReturn("Chinche");
 		
 		muestra.agregarVoto(voto);
 		muestra.agregarVoto(voto2);
 		
 		assertEquals(1,muestra.cantidadVotosDeTipo(vinchuca));	
+		
+	}
+	
+	@Test
+	void testPidoTipoALaMuestra() {
+		
+		
+		muestra.setCalculador(calculador);
+		muestra.getEspecie();
+		verify(calculador,times(1)).calcularTipo(muestra);
 		
 	}
 

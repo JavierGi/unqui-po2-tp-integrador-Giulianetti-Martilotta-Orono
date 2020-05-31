@@ -16,6 +16,7 @@ public class Muestra {
 	private Itipo vinchuca;
 	private EstadoDeMuestra estado;
 	private ArrayList<Voto> votacion;
+	private Icalculador calculador;
 
 	public Muestra(Usuario usuario, Ubicacion ubicacion, String foto, Itipo vinchuca) {
 		
@@ -25,6 +26,7 @@ public class Muestra {
 		this.vinchuca = vinchuca;
 		this.estado = new EstadoVerificable(this);
 		this.votacion = new ArrayList<Voto>();
+		this.calculador = new CalculadorBasico();
 	
 	}
 
@@ -66,8 +68,7 @@ public class Muestra {
 	}
 
 	public Itipo getEspecie() {
-		// TODO Auto-generated method stub
-		return this.vinchuca;
+		return this.calculador.calcularTipo(this);
 	}
 	
 
@@ -97,7 +98,7 @@ public class Muestra {
 		return (ArrayList<Voto>) this.getVotacion()
 				.stream()
 				.filter(v -> v.getNivelUsuario() == nivel)
-				.collect(Collectors.toList());	
+				.collect(Collectors.toList());		
 	
 	}
 
@@ -106,6 +107,13 @@ public class Muestra {
 	public Integer cantidadVotosDeTipo(Itipo tipo) {
 		
 		
-		return (int) this.getVotacion().stream().filter(v -> v.getTipo() == tipo).count();
+		return (int) this.getVotacion().stream().filter(v -> v.getTipo().getTipo() == tipo.getTipo()).count();
+	}
+
+
+
+	public void setCalculador(Icalculador calculador) {
+		this.calculador = calculador;
+		
 	}
 }

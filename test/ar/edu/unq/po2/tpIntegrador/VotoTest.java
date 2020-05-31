@@ -21,13 +21,11 @@ class VotoTest {
 	public void setUp() {
 		
 		this.usuario = mock(UsuarioVariable.class);
-		when(usuario.getNivel()).thenReturn("Basico");
-		this.muestra = mock(Muestra.class);
-		this.appWeb = mock(AplicacionWeb.class);
-		this.sordida = mock(Vinchuca.class);
+		when(usuario.getNivel()).thenReturn("Basico");		
+		this.sordida = mock(Itipo.class);
 		when(sordida.getTipo()).thenReturn("Sordida");
 		this.voto = new Voto(usuario, sordida);		
-		this.verificada = mock(Verificada.class);
+		
 	}
 	@Test
 	void testSolicitoElNivelDelUsuarioQueVotoYRegistroEnVoto() {
@@ -41,7 +39,7 @@ class VotoTest {
 	@Test
 	void testSolicitoElTipoDetalladoEnLaVotacion() {
 	
-		voto.getTipo();
+		voto.getTipo().getTipo();
 		verify(sordida).getTipo();
 	}
 

@@ -17,7 +17,7 @@ public class EstadoVerificable extends EstadoDeMuestra {
 	}
 
 	@Override
-	public Itipo getEspecia() {	
+	public Itipo getEspecie() {	
 		return null;				
 	}
 
@@ -40,6 +40,7 @@ public class EstadoVerificable extends EstadoDeMuestra {
 		
 		if(voto.getNivelUsuario() == "Experto") {
 			this.muestra.setEstado(new EstadoVerificacionExpertos(this.muestra));
+			this.muestra.setCalculador(new CalculadorExperto());
 		}
 		
 	}

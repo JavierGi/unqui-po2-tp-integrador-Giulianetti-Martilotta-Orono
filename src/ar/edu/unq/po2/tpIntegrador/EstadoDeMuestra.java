@@ -10,7 +10,7 @@ public abstract class EstadoDeMuestra {
 
 	protected abstract boolean getEstado();
 
-	protected abstract Itipo getEspecia();
+	protected abstract Itipo getEspecie();
 	
 	protected abstract void verificarModificacionDeEstado(Voto voto);
 	

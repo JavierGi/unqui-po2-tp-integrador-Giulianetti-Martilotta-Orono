@@ -16,6 +16,7 @@ class CalculadorBasicoTest {
 	private Voto voto3;
 	private Itipo sordida;
 	private Itipo chinche;
+	private Itipo otraSordida;
 	private CalculadorBasico verificador;
 	private ArrayList<Voto> votacion;
 	private ArrayList<Voto> votacion2;
@@ -31,8 +32,9 @@ class CalculadorBasicoTest {
 		this.voto = mock(Voto.class);
 		this.voto2 = mock(Voto.class);
 		this.voto3= mock(Voto.class);
-		this.sordida = mock(Vinchuca.class);
-		this.chinche = mock(Vinchuca.class);
+		this.sordida = mock(Itipo.class);
+		this.chinche = mock(Itipo.class);
+		this.otraSordida = mock(Itipo.class);
 		this.votaciones = new ArrayList<ArrayList<Voto>>();
 		
 		
@@ -46,12 +48,14 @@ class CalculadorBasicoTest {
 		this.votacion.add(voto3);
 		
 		
+		
 		when(muestra.getVotacion()).thenReturn(votacion);
 		when(sordida.getTipo()).thenReturn("Sordida");
 		when(chinche.getTipo()).thenReturn("Chinche");
+		when(otraSordida.getTipo()).thenReturn("Sordida");
 		when(voto.getTipo()).thenReturn(sordida);
-		when(voto2.getTipo()).thenReturn(sordida);
-		when(voto3.getTipo()).thenReturn(chinche);
+		when(voto2.getTipo()).thenReturn(chinche);
+		when(voto3.getTipo()).thenReturn(otraSordida);
 		when(muestra.cantidadVotosDeTipo(sordida)).thenReturn(2);
 		when(muestra.cantidadVotosDeTipo(chinche)).thenReturn(1);
 		
@@ -81,6 +85,27 @@ class CalculadorBasicoTest {
 	
 	@Test
 	void testVerificacionDeUnEmpateEnLaVotacion2() {
+	
+		when(muestra.getVotacion()).thenReturn(votacion);
+		when(sordida.getTipo()).thenReturn("Sordida");
+		when(chinche.getTipo()).thenReturn("Chinche");
+		when(otraSordida.getTipo()).thenReturn("Sordida");
+		when(voto.getTipo()).thenReturn(sordida);
+		when(voto2.getTipo()).thenReturn(chinche);
+		when(voto3.getTipo()).thenReturn(otraSordida);
+		when(muestra.cantidadVotosDeTipo(sordida)).thenReturn(3);
+		when(muestra.cantidadVotosDeTipo(chinche)).thenReturn(1);
+		
+		this.votacion.add(voto);
+		this.votacion.add(voto2);
+		this.votacion.add(voto3);
+		
+		assertEquals(sordida.getTipo(),verificador.calcularTipo(muestra).getTipo());
+		
+	}
+	
+	@Test 
+	void testHayEmpate() {
 		
 		this.votacion.add(voto);
 		this.votacion.add(voto2);
@@ -89,14 +114,14 @@ class CalculadorBasicoTest {
 		
 		when(muestra.getVotacion()).thenReturn(votacion);
 		when(sordida.getTipo()).thenReturn("Sordida");
-		when(chinche.getTipo()).thenReturn("Sordida");
+		when(chinche.getTipo()).thenReturn("Chinche");
 		when(voto.getTipo()).thenReturn(sordida);
 		when(voto2.getTipo()).thenReturn(chinche);
-		when(muestra.cantidadVotosDeTipo(sordida)).thenReturn(2);
+		when(muestra.cantidadVotosDeTipo(sordida)).thenReturn(1);
+		when(muestra.cantidadVotosDeTipo(chinche)).thenReturn(1);
 		
 		
-		
-		assertEquals(sordida.getTipo(),verificador.calcularTipo(muestra).getTipo());
+		assertTrue(verificador.hayEmpate(muestra, 1));
 		
 	}
 }

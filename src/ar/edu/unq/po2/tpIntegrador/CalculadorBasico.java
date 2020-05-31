@@ -16,7 +16,8 @@ public class CalculadorBasico implements Icalculador {
 		
 		int contador = 0;
 		Itipo ganador = null;
-		for(Voto voto : muestra.getVotacion()) {
+		ArrayList<Voto> votacion = muestra.getVotacion();  
+		for(Voto voto : votacion) {
 			if(muestra.cantidadVotosDeTipo(voto.getTipo()) > contador) {
 				contador = muestra.cantidadVotosDeTipo(voto.getTipo());
 				ganador = voto.getTipo();

@@ -60,14 +60,17 @@ class EstadoDeVerificacionExpertosTest {
 		when(otroVoto.getUsuario()).thenReturn(otroExperto);
 		when(muestra.noRegistraVotoDe(otroExperto)).thenReturn(true);
 		votos.add(voto);
+		votos.add(otroVoto);
 		//votos.add(otroVoto);
 		when(muestra.getVotacion()).thenReturn(votos);
+		when(muestra.cantidadVotosDeTipo(tipo)).thenReturn(2);
 		
-		estado.agregarVoto(otroVoto);
+		estado.verificarModificacionDeEstado(otroVoto);
 		//estado.verificarModificacionDeEstado(otroVoto);
 		
 		
 		verify(muestra,times(1)).setEstado(any(EstadoDeMuestra.class));
+		verify(muestra,times(1)).setCalculador(any(Icalculador.class));
 		
 	}
 	
