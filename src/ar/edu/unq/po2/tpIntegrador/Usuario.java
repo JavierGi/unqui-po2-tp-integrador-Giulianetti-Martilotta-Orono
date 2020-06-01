@@ -19,5 +19,6 @@ public abstract class Usuario {
 		return this.username;
 	}
 	protected abstract void verificarMuestra(Muestra muestra, Voto voto) throws VotacionCerradaException;
+	protected abstract void setNivel(Inivel nivel);
 
 }

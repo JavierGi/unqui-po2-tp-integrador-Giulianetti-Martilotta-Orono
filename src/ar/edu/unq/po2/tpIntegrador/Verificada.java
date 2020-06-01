@@ -14,11 +14,7 @@ public class Verificada extends EstadoDeMuestra {
 		return this.verificable;
 	}
 
-	@Override
-	protected Itipo getEspecia() {
-		// Implementar que devuelva que tipo es si se puede devolver un tipo
-		return null;
-	}
+
 
 	@Override
 	public void verificarModificacionDeEstado(Voto voto) {
@@ -36,6 +32,12 @@ public class Verificada extends EstadoDeMuestra {
 	protected void concretarVotación(Voto voto) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	protected Itipo getEspecie() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

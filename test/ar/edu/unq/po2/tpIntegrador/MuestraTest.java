@@ -132,6 +132,18 @@ class MuestraTest {
 		verify(calculador,times(1)).calcularTipo(muestra);
 		
 	}
+	
+	@Test
+	void testConsultoSiLaMuestraTieneVotosDeUnUsuario() {
+		
+		when(voto.getUsuario()).thenReturn(usuario2);
+		
+		muestra.agregarVoto(voto);
+		
+		assertTrue(muestra.registraVotoDeUsuario(usuario2));
+		assertFalse(muestra.registraVotoDeUsuario(usuario));	
+		
+	}
 
 
 

@@ -1,5 +1,6 @@
 package ar.edu.unq.po2.tpIntegrador;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
@@ -17,6 +18,7 @@ public class Muestra {
 	private EstadoDeMuestra estado;
 	private ArrayList<Voto> votacion;
 	private Icalculador calculador;
+	private LocalDate fecha;
 
 	public Muestra(Usuario usuario, Ubicacion ubicacion, String foto, Itipo vinchuca) {
 		
@@ -27,6 +29,7 @@ public class Muestra {
 		this.estado = new EstadoVerificable(this);
 		this.votacion = new ArrayList<Voto>();
 		this.calculador = new CalculadorBasico();
+		this.fecha = LocalDate.now();
 	
 	}
 
@@ -76,6 +79,10 @@ public class Muestra {
 		
 		return this.getVotosDe(username).size() == 0;
 	}
+	
+	public LocalDate getFecha() {
+		return this.fecha;
+	}
 
 
 
@@ -116,4 +123,15 @@ public class Muestra {
 		this.calculador = calculador;
 		
 	}
+
+
+
+	public boolean registraVotoDeUsuario(Usuario usuario) {
+		
+		return this.getVotacion().stream()
+								.filter(v -> v.getUsuario() == usuario)
+								.collect(Collectors.toList())
+								.size() > 0 && this.usuario != usuario;
+	}
+	
 }

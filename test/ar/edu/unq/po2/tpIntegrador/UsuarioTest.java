@@ -17,6 +17,7 @@ class UsuarioTest {
 	private Muestra muestra;
 	private Voto voto;
 	private EstadoDeMuestra estadoExpertos;
+	private Inivel nivel;
 	
 	
 	@BeforeEach
@@ -26,6 +27,7 @@ class UsuarioTest {
 		this.muestra = mock(Muestra.class);
 		this.usuario = new UsuarioVariable(app,"Pablov");
 		this.voto = mock(Voto.class);
+		this.nivel = mock(Inivel.class);
 		this.estadoExpertos = mock(EstadoVerificacionExpertos.class);
 	}
 	
@@ -44,5 +46,15 @@ class UsuarioTest {
 		when(voto.getNivelUsuario()).thenReturn("Basico");
 		verify(muestra).registrarVerificacion(voto);
 
+	}
+	
+	@Test
+	void testUsuarioPideSuNivel() {
+		
+		usuario.setNivel(nivel);
+		usuario.getNivel();
+		
+		
+		verify(nivel).getNivel();
 	}
 }
